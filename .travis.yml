@@ -4,6 +4,9 @@ jdk:
 
 script: ./mvnw clean install
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 jobs:
   include:
     - stage: Test
