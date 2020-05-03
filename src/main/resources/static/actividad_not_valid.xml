@@ -1,0 +1,21 @@
+<agregado>
+    <usuario>160822b0-133b-475d-9841-41e833bea705</usuario>
+    <actividades>
+        <actividad>
+            <tipo>escucha</tipo>
+            <ambito>
+                <ambito_tipo>playlist</ambito_tipo>
+                <ambito_id>0841a0de-e2b1-496a-a72a-45b72371d49c</ambito_id>
+            </ambito>
+            <cancion>23859d1a-65ae-44a9-9ff3-ecdf9e728837</cancion>
+        </actividad>
+        <actividad>
+            <tipo>escucha</tipo>
+            <ambito>
+                <ambito_tipo>cancion</ambito_tipo>
+                <ambito_id>a98cf4a0-8df8-4b17-9c04-a7e54565e16d</ambito_id>
+            </ambito>
+            <cancion>68656eb8-bed1-40f1-ba1b-9c8021217477</cancion>
+        </actividad>
+    </actividades>
+</agregado>
