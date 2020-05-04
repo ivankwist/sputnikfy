@@ -89,13 +89,4 @@
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>outputDir</id>
-			<build>
-				<directory>docker</directory>
-			</build>
-		</profile>
-	</profiles>
-
 </project>
