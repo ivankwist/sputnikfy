@@ -59,8 +59,4 @@ class SputnikfyApplicationTests {
 				.andExpect(status().is(406));
 	}
 
-	@Test
-	public void contextLoads() {
-	}
-
 }

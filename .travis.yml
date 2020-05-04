@@ -3,6 +3,7 @@ jdk:
   - openjdk8
 
 script: ./mvnw clean install
+        ./mvnw clean package
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
