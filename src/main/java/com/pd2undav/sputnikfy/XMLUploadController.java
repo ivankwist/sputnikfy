@@ -43,7 +43,7 @@ public class XMLUploadController {
     private UploadResponse validateXML(MultipartFile file){
         try {
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = factory.newSchema(new File("src/main/resources/static/actividad.xsd"));
+            Schema schema = factory.newSchema(new File("resources/actividad.xsd"));
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(convert(file)));
         } catch (IOException | org.xml.sax.SAXException e) {

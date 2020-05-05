@@ -27,7 +27,7 @@ class SputnikfyApplicationTests {
 		MockMultipartFile testFile = new MockMultipartFile("file",
 				"file.xml",
 				"application/xml",
-				new FileInputStream(new File("src/main/resources/static/actividad_valid.xml")));
+				new FileInputStream(new File("resources/actividad_valid.xml")));
 
 		this.mockMvc.perform(multipart("/")
 				.file(testFile))
@@ -41,7 +41,7 @@ class SputnikfyApplicationTests {
 		MockMultipartFile testFile = new MockMultipartFile("file",
 				"file.xml",
 				"application/xml",
-				new FileInputStream(new File("src/main/resources/static/actividad_not_valid.xml")));
+				new FileInputStream(new File("resources/actividad_not_valid.xml")));
 
 		this.mockMvc.perform(multipart("/")
 				.file(testFile))
