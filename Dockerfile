@@ -10,6 +10,8 @@ RUN mvn -f /usr/src/app/pom.xml clean package
 # Package stage
 #
 FROM gcr.io/distroless/java
+RUN mkdir /resources
+RUN ln -s /resources /usr/app/resources
 COPY --from=build /usr/src/app/target/sputnikfy-0.0.1-SNAPSHOT.jar /usr/app/sputnikfy.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/app/sputnikfy.jar"]
