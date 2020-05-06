@@ -4,6 +4,10 @@
 
 Trabajo Práctico 1 de la materia Programación Distribuida II de la Universidad Nacional de Avellaneda.
 
+Nos contactan desde Volgogrado los dueños de Sputnikfy una plataforma rusa de música para que desde Argentina los ayudemos con el desarrollo. 
+
+La idea es que sea una app cliente/servidor pero para no mandar evento por evento se guardará un archivo XML localmente para luego ser subido por el dispositivo móvil.  
+
 ## Requisitos
 
 Para usar la aplicación es necesario contar con Docker y Docker Compose instalado.
