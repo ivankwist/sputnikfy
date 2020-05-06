@@ -41,5 +41,4 @@ Para realizar esta validación es necesario enviar en un POST un archivo XML con
 * validation: Booleano con el resultado de la validacion
 * error: String con el error de la validacion. Si se tratara de un archivo valido, el mismo será null.
 
-El código HTTP será 200 si se trata de un archivo valido y un 406 de un no valido.
-
+El código HTTP será 200 si se trata de un archivo valido y un 406 de uno no valido.
