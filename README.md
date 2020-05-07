@@ -42,3 +42,11 @@ Para realizar esta validación es necesario enviar en un POST un archivo XML con
 * error: String con el error de la validacion. Si se tratara de un archivo valido, el mismo será null.
 
 El código HTTP será 200 si se trata de un archivo valido y un 406 de uno no valido.
+
+## Docker Hub
+
+La imagen de Sputnikfy se encuentra disponible en el siguiente respositorio de Docker Hub: 
+
+```
+https://hub.docker.com/repository/docker/ivankwist/sputnikfy/
+```
