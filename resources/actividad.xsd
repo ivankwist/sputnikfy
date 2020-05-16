@@ -11,20 +11,20 @@
   <xs:restriction base="xs:integer">
     <xs:enumeration value="-1"/>
     <xs:enumeration value="1"/>
-  </xs:restriction>      
+  </xs:restriction>
 </xs:simpleType>
 
 <xs:simpleType name="EntidadTipoType">
   <xs:restriction base="xs:string">
     <xs:enumeration value="cancion"/>
     <xs:enumeration value="album"/>
-  </xs:restriction>      
+  </xs:restriction>
 </xs:simpleType>
 
 <xs:complexType name="entidadType">
     <xs:sequence>
-        <xs:element name="entidad_tipo" type="EntidadTipoType" />
-        <xs:element name="entidad_id" type="UUID" />
+        <xs:element name="entidad_tipo" type="EntidadTipoType"/>
+        <xs:element name="entidad_id" type="UUID"/>
     </xs:sequence>
 </xs:complexType>
 
@@ -33,7 +33,7 @@
     <xs:enumeration value="playlist"/>
     <xs:enumeration value="radio"/>
     <xs:enumeration value="album"/>
-  </xs:restriction>      
+  </xs:restriction>
 </xs:simpleType>
 
 <xs:complexType name="ambitoType">
@@ -43,17 +43,17 @@
     </xs:sequence>
 </xs:complexType>
 
-<xs:simpleType name="TipoType">
+<xs:simpleType name="tipoType">
   <xs:restriction base="xs:string">
     <xs:enumeration value="escucha"/>
     <xs:enumeration value="tweet"/>
     <xs:enumeration value="pulgar"/>
-  </xs:restriction>      
+  </xs:restriction>
 </xs:simpleType>
 
 <xs:complexType name="actividadType">
     <xs:sequence>
-        <xs:element name="tipo" type="xs:string" />
+        <xs:element name="tipo" type="tipoType"/>
         <!-- Escucha -->
         <xs:element name="ambito" type="ambitoType" minOccurs="0" maxOccurs="1"/>
         <xs:element name="cancion" type="UUID" minOccurs="0" maxOccurs="1"/>
@@ -67,15 +67,15 @@
 
 <xs:complexType name="actividadesType">
     <xs:sequence>
-        <xs:element name="actividad" type="actividadType" maxOccurs="unbounded" />
+        <xs:element name="actividad" type="actividadType" maxOccurs="unbounded"/>
     </xs:sequence>
 </xs:complexType>
 
 <xs:element name="agregado">
     <xs:complexType>
         <xs:sequence>
-            <xs:element name="usuario" type="UUID" />
-            <xs:element name="actividades" type="actividadesType" />
+            <xs:element name="usuario" type="UUID"/>
+            <xs:element name="actividades" type="actividadesType"/>
         </xs:sequence>
     </xs:complexType>
 </xs:element>
