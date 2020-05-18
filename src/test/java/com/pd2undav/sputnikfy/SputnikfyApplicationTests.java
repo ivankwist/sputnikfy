@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileInputStream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -52,11 +53,34 @@ class SputnikfyApplicationTests {
 
 	@Test
 	public void testNotXMLFileUpload() throws Exception {
-		MockMultipartFile testFile = new MockMultipartFile("file", "file.txt", "text/plain", "txt".getBytes());
+		MockMultipartFile testFile = new MockMultipartFile("file",
+				"file.txt",
+				"text/plain",
+				"txt".getBytes());
 
 		this.mockMvc.perform(multipart("/")
 				.file(testFile))
 				.andExpect(status().is(406));
+	}
+
+	@Test
+	public void testValidXMLValidation() throws Exception {
+		MockMultipartFile testFile = new MockMultipartFile("file",
+				"file.xml",
+				"application/xml",
+				new FileInputStream(new File("resources/actividad_valid.xml")));
+
+		assertEquals(XMLValidator.validateXML(testFile).getValidation(), true);
+	}
+
+	@Test
+	public void testNotValidXMLValidation() throws Exception {
+		MockMultipartFile testFile = new MockMultipartFile("file",
+				"file.xml",
+				"application/xml",
+				new FileInputStream(new File("resources/actividad_not_valid.xml")));
+
+		assertEquals(XMLValidator.validateXML(testFile).getValidation(), false);
 	}
 
 }
