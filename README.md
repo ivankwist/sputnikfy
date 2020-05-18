@@ -43,6 +43,41 @@ Para realizar esta validación es necesario enviar en un POST un archivo XML con
 
 El código HTTP será 200 si se trata de un archivo valido y un 406 de uno no valido.
 
+## Ejemplos
+
+### XML Correcto
+
+Para probar la validación de Sputnikfy podremos enviar un archivo de la siguiente manera:
+
+```
+curl -X POST -F "file=@resources/actividad_valid.xml" http://127.0.0.1:8080/
+```
+Deberíamos obtener la siguiente respuesta:
+
+```
+{
+  "validation":true,
+  "error":null
+}
+```
+
+### XML Incorrecto
+
+
+Para probar la validación de Sputnikfy de un archivo incorrecto podremos enviar un archivo de la siguiente manera:
+
+```
+curl -X POST -F "file=@resources/actividad_not_valid.xml" http://127.0.0.1:8080/
+```
+Deberíamos obtener la siguiente respuesta:
+
+```
+{
+  "validation":false,
+  "error":"cvc-enumeration-valid: Value 'cancion' is not facet-valid with respect to enumeration '[playlist, radio, album]'. It must be a value from the enumeration."
+}
+```
+
 ## Docker Hub
 
 La imagen de Sputnikfy se encuentra disponible en el siguiente respositorio de Docker Hub: 
