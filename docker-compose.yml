@@ -4,5 +4,3 @@ services:
     image: sputnikfy:latest
     ports:
       - "8080:8080"
-    volumes:
-      - ./resources:/resources
