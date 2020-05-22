@@ -10,11 +10,17 @@ import org.apache.commons.io.FilenameUtils;
 @RestController
 public class XMLUploadController {
 
+    XMLValidator XMLValidator;
+
+    public XMLUploadController(XMLValidator XMLValidator) {
+        this.XMLValidator = XMLValidator;
+    }
+
     @PostMapping("/")
     public ResponseEntity<UploadResponse> handleFileUpload(@RequestParam("file") MultipartFile file) {
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
         String mimeType = file.getContentType();
-        UploadResponse response = XMLValidator.validateXML(file);
+        UploadResponse response = this.XMLValidator.validateXML(file);
 
         return new ResponseEntity<UploadResponse>(response, getHttpStatus(extension, mimeType, response.getValidation()));
     }

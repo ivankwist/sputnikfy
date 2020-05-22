@@ -65,22 +65,24 @@ class SputnikfyApplicationTests {
 
 	@Test
 	public void testValidXMLValidation() throws Exception {
+		XMLValidator validator = new XMLValidator();
 		MockMultipartFile testFile = new MockMultipartFile("file",
 				"file.xml",
 				"application/xml",
 				new FileInputStream(new File("resources/actividad_valid.xml")));
 
-		assertEquals(XMLValidator.validateXML(testFile).getValidation(), true);
+		assertEquals(validator.validateXML(testFile).getValidation(), true);
 	}
 
 	@Test
 	public void testNotValidXMLValidation() throws Exception {
+		XMLValidator validator = new XMLValidator();
 		MockMultipartFile testFile = new MockMultipartFile("file",
 				"file.xml",
 				"application/xml",
 				new FileInputStream(new File("resources/actividad_not_valid.xml")));
 
-		assertEquals(XMLValidator.validateXML(testFile).getValidation(), false);
+		assertEquals(validator.validateXML(testFile).getValidation(), false);
 	}
 
 }

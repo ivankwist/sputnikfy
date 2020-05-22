@@ -1,5 +1,8 @@
 package com.pd2undav.sputnikfy;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.xml.XMLConstants;
@@ -11,22 +14,27 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
+@Service
 public class XMLValidator {
 
-    public static UploadResponse validateXML(MultipartFile file){
+    private Logger LOGGER = LogManager.getLogger(XMLValidator.class);
+
+    public UploadResponse validateXML(MultipartFile file){
         try {
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = factory.newSchema(new File("resources/actividad.xsd"));
             Validator validator = schema.newValidator();
-            validator.validate(new StreamSource(convert(file)));
+            validator.validate(new StreamSource(this.convert(file)));
         } catch (IOException | org.xml.sax.SAXException e) {
+            LOGGER.error("Error de validacion", e);
             return new UploadResponse(false, e.getMessage());
         }
 
         return new UploadResponse(true);
     }
 
-    public static File convert(MultipartFile file) throws IOException {
+    public File convert(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());
         convFile.createNewFile();
         FileOutputStream fos = new FileOutputStream(convFile);
