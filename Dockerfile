@@ -2,9 +2,8 @@
 # Build stage
 #
 FROM maven:3.6.3-jdk-8-slim AS build
-COPY pom.xml /usr/src/app
 COPY src /usr/src/app/src
-RUN mvn dependency:go-offline -B
+COPY pom.xml /usr/src/app
 RUN mvn -f /usr/src/app/pom.xml clean package -Dmaven.test.skip=true
 
 #
