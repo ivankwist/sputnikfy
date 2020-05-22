@@ -10,7 +10,7 @@ RUN mvn -f /usr/src/app/pom.xml clean package -Dmaven.test.skip=true
 #
 # Package stage
 #
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8-jre-alpine
 RUN addgroup -S spring && adduser -S spring -G spring
 COPY --from=build /usr/src/app/target/sputnikfy-0.0.1-SNAPSHOT.jar /usr/app/sputnikfy.jar
 COPY /resources/actividad.xsd /resources/actividad.xsd
