@@ -1,6 +1,7 @@
 # Sputnikfy
 [![Build Status](https://travis-ci.com/ivankwist/sputnikfy.svg?branch=master)](https://travis-ci.com/ivankwist/sputnikfy)
 [![codecov](https://codecov.io/gh/ivankwist/sputnikfy/branch/master/graph/badge.svg)](https://codecov.io/gh/ivankwist/sputnikfy)
+[![Docker Hub build](https://img.shields.io/badge/docker%20hub-autobuild-blue)](https://hub.docker.com/repository/docker/ivankwist/sputnikfy/builds)
 
 Trabajo Práctico 1 de la materia Programación Distribuida II de la Universidad Nacional de Avellaneda.
 
