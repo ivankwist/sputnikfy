@@ -1,7 +1,7 @@
 package com.pd2undav.sputnikfy;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +18,7 @@ import java.io.IOException;
 @Service
 public class XMLValidator {
 
-    private Logger LOGGER = LogManager.getLogger(XMLValidator.class);
+    Logger logger = LoggerFactory.getLogger(XMLValidator.class);
 
     public UploadResponse validateXML(MultipartFile file){
         try {
@@ -27,7 +27,7 @@ public class XMLValidator {
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(this.convert(file)));
         } catch (IOException | org.xml.sax.SAXException e) {
-            LOGGER.error("Error de validacion", e);
+            logger.error("Error de validacion", e);
             return new UploadResponse(false, e.getMessage());
         }
 
