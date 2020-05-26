@@ -13,8 +13,7 @@ FROM openjdk:8-jdk-alpine
 RUN addgroup -S spring && adduser -S spring -G spring
 COPY --from=build /usr/src/app/target/sputnikfy-0.0.1-SNAPSHOT.jar /usr/app/sputnikfy.jar
 COPY /resources/actividad.xsd /resources/actividad.xsd
-RUN chmod 777 /resources/actividad.xsd
-RUN chmod 775 /usr/app
+RUN chmod 777 /resources
 EXPOSE 8080
 USER spring:spring
 ENTRYPOINT ["java","-jar","/usr/app/sputnikfy.jar"]
