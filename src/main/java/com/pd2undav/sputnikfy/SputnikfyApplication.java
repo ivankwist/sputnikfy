@@ -19,18 +19,19 @@ public class SputnikfyApplication {
 	@Bean
 	public ApplicationRunner runner(RabbitTemplate template) {
 		return args -> {
-			template.convertAndSend("myQueue", "Hello, world!");
+			template.convertAndSend("hola", "Hello, world!");
 		};
 	}
 
 	@Bean
-	public Queue myQueue() {
-		return new QueueBuilder().quorum().build().setActualName("hola");
+	public static Queue myQueue() {
+		Queue queue = QueueBuilder.durable("hola").quorum().build();
+		return queue;
 	}
 
 	@RabbitListener(queues = "hola")
 	public void listen(String in) {
-		System.out.println("Message read from myQueue : " + in);
+		System.out.println("Message read from hola : " + in);
 	}
 
 }
