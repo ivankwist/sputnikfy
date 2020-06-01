@@ -13,11 +13,11 @@ import java.util.List;
 public class XMLUploadController {
 
     XMLValidator XMLValidator;
-    XMLParser XMLParser;
+    ActivityHandler activityHandler;
 
-    public XMLUploadController(XMLValidator XMLValidator, XMLParser XMLParser) {
+    public XMLUploadController(com.pd2undav.sputnikfy.XMLValidator XMLValidator, ActivityHandler activityHandler) {
         this.XMLValidator = XMLValidator;
-        this.XMLParser = XMLParser;
+        this.activityHandler = activityHandler;
     }
 
     @PostMapping("/")
@@ -25,10 +25,9 @@ public class XMLUploadController {
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
         String mimeType = file.getContentType();
         UploadResponse response = this.XMLValidator.validateXML(file);
-        List<ActivityMessage> mensajes = this.XMLParser.parseXML(file);
 
-        for (ActivityMessage m:mensajes) {
-            System.out.println(m.getTopic()+" - "+m.getMessage());
+        if(response.getValidation()){
+            activityHandler.handleXMLActivity(file);
         }
 
         return new ResponseEntity<UploadResponse>(response, getHttpStatus(extension, mimeType, response.getValidation()));

@@ -15,18 +15,29 @@ public class SputnikfyApplication {
 		SpringApplication.run(SputnikfyApplication.class, args);
 	}
 
+	// Exchanges
 	@Bean
-    public TopicExchange appExchange() {
+    public TopicExchange sputnikfyExchange() {
         return new TopicExchange("sput-topic");
 	}
-	
+
+	// Queues
 	@Bean
-    public Queue appQueueGeneric() {
-        return new Queue("escuchas");
+    public Queue billingQueue() {
+        return new Queue("billing");
 	}
-	
 	@Bean
-    public Binding declareBindingGeneric() {
-        return BindingBuilder.bind(appQueueGeneric()).to(appExchange()).with("actividad.escucha");
+	public Queue statisticsQueue() {
+		return new Queue("statistics");
+	}
+
+	// Bindings
+	@Bean
+    public Binding billingBinding() {
+        return BindingBuilder.bind(billingQueue()).to(sputnikfyExchange()).with("actividad.escucha");
     }
+	@Bean
+	public Binding statisticsBinding() {
+		return BindingBuilder.bind(statisticsQueue()).to(sputnikfyExchange()).with("actividad.*");
+	}
 }
