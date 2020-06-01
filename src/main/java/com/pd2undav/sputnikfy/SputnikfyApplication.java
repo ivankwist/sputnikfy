@@ -17,21 +17,17 @@ public class SputnikfyApplication {
 	}
 
 	@Bean
-	public ApplicationRunner runner(RabbitTemplate template) {
-		return args -> {
-			template.convertAndSend("hola", "Hello, world!");
-		};
+    public TopicExchange appExchange() {
+        return new TopicExchange("sput-topic");
 	}
-
+	
 	@Bean
-	public static Queue myQueue() {
-		Queue queue = QueueBuilder.durable("hola").quorum().build();
-		return queue;
+    public Queue appQueueGeneric() {
+        return new Queue("escuchas");
 	}
-
-	@RabbitListener(queues = "hola")
-	public void listen(String in) {
-		System.out.println("Message read from hola : " + in);
-	}
-
+	
+	@Bean
+    public Binding declareBindingGeneric() {
+        return BindingBuilder.bind(appQueueGeneric()).to(appExchange()).with("actividad.escucha");
+    }
 }

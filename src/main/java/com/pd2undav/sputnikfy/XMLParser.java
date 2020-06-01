@@ -19,6 +19,8 @@ import java.util.List;
 public class XMLParser {
 
     Logger logger = LoggerFactory.getLogger(XMLParser.class);
+    @Autowired
+    RabbitTemplate rabbitTemplate;
 
     public List<ActivityMessage> parseXML(MultipartFile file){
         List<ActivityMessage> msg_list = new ArrayList<>();
@@ -34,6 +36,7 @@ public class XMLParser {
                 a.setUsuario(agregado.getUsuario());
                 String json = mapper.writeValueAsString(a);
                 msg_list.add(new ActivityMessage("activividad."+a.getTipo(), json));
+                rabbitTemplate.convertAndSend("sput-topic", "actividad.escucha", json);
             }
 
         } catch (IOException e) {
