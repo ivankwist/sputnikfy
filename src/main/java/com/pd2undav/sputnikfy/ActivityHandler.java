@@ -1,9 +1,9 @@
 package com.pd2undav.sputnikfy;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 

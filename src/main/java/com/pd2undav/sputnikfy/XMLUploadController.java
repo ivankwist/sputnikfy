@@ -7,8 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import org.apache.commons.io.FilenameUtils;
 
-import java.util.List;
-
 @RestController
 public class XMLUploadController {
 

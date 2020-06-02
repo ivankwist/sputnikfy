@@ -1,12 +1,9 @@
 package com.pd2undav.sputnikfy;
 
-import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.amqp.core.*;
 
 @SpringBootApplication
 public class SputnikfyApplication {
@@ -24,11 +21,13 @@ public class SputnikfyApplication {
 	// Queues
 	@Bean
     public Queue billingQueue() {
-        return new Queue("billing");
+		return QueueBuilder.durable("billing").quorum().build();
+		//return new Queue("billing");
 	}
 	@Bean
 	public Queue statisticsQueue() {
-		return new Queue("statistics");
+		return QueueBuilder.durable("statistics").quorum().build();
+		//return new Queue("statistics");
 	}
 
 	// Bindings
