@@ -15,7 +15,7 @@ public class SputnikfyApplication {
 	// Exchanges
 	@Bean
     public TopicExchange sputnikfyExchange() {
-        return new TopicExchange("sput-topic");
+        return new TopicExchange("sputnikfy-topic");
 	}
 
 	// Queues

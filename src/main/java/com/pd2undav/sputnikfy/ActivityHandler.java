@@ -25,8 +25,8 @@ public class ActivityHandler {
         List<ActivityMessage> messages = this.XMLParser.parseXML(file);
 
         for (ActivityMessage m:messages) {
-            rabbitTemplate.convertAndSend("sput-topic", m.getTopic(), m.getMessage());
-            logger.debug("Sent message with routing-key: "+m.getTopic());
+            rabbitTemplate.convertAndSend("sputnikfy-topic", m.getTopic(), m.getMessage());
+            logger.debug("Sent message with routing-key '"+m.getTopic()+"': "+m.getMessage());
         }
     }
 }
