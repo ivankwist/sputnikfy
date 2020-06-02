@@ -26,7 +26,7 @@ public class ActivityHandler {
 
         for (ActivityMessage m:messages) {
             rabbitTemplate.convertAndSend("sput-topic", m.getTopic(), m.getMessage());
-            logger.debug("Sent message with topic: "+m.getTopic());
+            logger.debug("Sent message with routing-key: "+m.getTopic());
         }
     }
 }

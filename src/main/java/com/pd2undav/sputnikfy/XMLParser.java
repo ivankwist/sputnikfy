@@ -18,14 +18,14 @@ import java.util.List;
 public class XMLParser {
 
     Logger logger = LoggerFactory.getLogger(XMLParser.class);
+    XMLValidator XMLValidator;
 
     public List<ActivityMessage> parseXML(MultipartFile file){
         List<ActivityMessage> msg_list = new ArrayList<>();
-        XMLValidator xmlv = new XMLValidator();
 
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            Agregado agregado = xmlMapper.readValue(xmlv.convert(file), Agregado.class);
+            Agregado agregado = xmlMapper.readValue(this.XMLValidator.convert(file), Agregado.class);
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
