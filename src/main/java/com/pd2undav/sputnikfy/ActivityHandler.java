@@ -1,5 +1,7 @@
 package com.pd2undav.sputnikfy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ public class ActivityHandler {
 
     @Autowired
     RabbitTemplate rabbitTemplate;
+    Logger logger = LoggerFactory.getLogger(ActivityHandler.class);
     XMLParser XMLParser;
 
     public ActivityHandler(com.pd2undav.sputnikfy.XMLParser XMLParser) {
@@ -23,6 +26,7 @@ public class ActivityHandler {
 
         for (ActivityMessage m:messages) {
             rabbitTemplate.convertAndSend("sput-topic", m.getTopic(), m.getMessage());
+            logger.debug("Sent message with topic: "+m.getTopic());
         }
     }
 }
