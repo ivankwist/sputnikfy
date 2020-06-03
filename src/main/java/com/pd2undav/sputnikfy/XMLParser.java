@@ -20,6 +20,11 @@ public class XMLParser {
     Logger logger = LoggerFactory.getLogger(XMLParser.class);
     XMLValidator XMLValidator;
 
+
+    public XMLParser(XMLValidator XMLValidator) {
+        this.XMLValidator = XMLValidator;
+    }
+
     public List<ActivityMessage> parseXML(MultipartFile file){
         List<ActivityMessage> msg_list = new ArrayList<>();
 
@@ -32,7 +37,7 @@ public class XMLParser {
             for (Actividad a:agregado.getActividades()) {
                 a.setUsuario(agregado.getUsuario());
                 String json = mapper.writeValueAsString(a);
-                msg_list.add(new ActivityMessage("activividad."+a.getTipo(), json));
+                msg_list.add(new ActivityMessage("actividad."+a.getTipo(), json));
             }
 
         } catch (IOException e) {

@@ -26,7 +26,7 @@ public class ActivityHandler {
 
         for (ActivityMessage m:messages) {
             rabbitTemplate.convertAndSend("sputnikfy-topic", m.getTopic(), m.getMessage());
-            logger.debug("Sent message with routing-key '"+m.getTopic()+"': "+m.getMessage());
+            logger.info("Sent message with routing-key '"+m.getTopic()+"': "+m.getMessage());
         }
     }
 }
