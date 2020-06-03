@@ -1,3 +1,5 @@
+dist: xenial
+
 language: java
 
 jdk:
@@ -16,6 +18,9 @@ jobs:
 addons:
   hosts:
     - rabbitmq
+  apt:
+    packages:
+      - rabbitmq-server
 
 services:
   - rabbitmq
