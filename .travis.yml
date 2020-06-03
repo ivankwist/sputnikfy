@@ -1,4 +1,5 @@
 language: java
+
 jdk:
   - openjdk8
 
@@ -11,3 +12,10 @@ jobs:
   include:
     - stage: Test
       script: ./mvnw clean test
+
+addons:
+  hosts:
+    - rabbitmq
+
+services:
+  - rabbitmq
