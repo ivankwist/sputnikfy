@@ -21,8 +21,8 @@ public class SputnikfyApplication {
 	// Queues
 	@Bean
     public Queue billingQueue() {
-		return QueueBuilder.durable("billing").quorum().build();
-		//return new Queue("billing");
+		//return QueueBuilder.durable("billing").quorum().build();
+		return new Queue("billing");
 	}
 	@Bean
 	public Queue statisticsQueue() {
