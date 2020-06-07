@@ -11,9 +11,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-
 
 @Service
 public class XMLValidator {
@@ -25,21 +23,12 @@ public class XMLValidator {
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = factory.newSchema(new File("resources/actividad.xsd"));
             Validator validator = schema.newValidator();
-            validator.validate(new StreamSource(this.convert(file)));
+            validator.validate(new StreamSource(SputnikfyHelper.convert(file)));
         } catch (IOException | org.xml.sax.SAXException e) {
             logger.error("Error de validacion", e);
             return new UploadResponse(false, e.getMessage());
         }
 
         return new UploadResponse(true);
-    }
-
-    public File convert(MultipartFile file) throws IOException {
-        File convFile = new File("resources/"+file.getOriginalFilename());
-        convFile.createNewFile();
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
-        return convFile;
     }
 }

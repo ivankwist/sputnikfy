@@ -5,8 +5,7 @@ public class UploadResponse {
     private final String error;
 
     public UploadResponse(boolean validation) {
-        this.validation = validation;
-        this.error = null;
+        this(validation, null);
     }
 
     public UploadResponse(boolean validation, String error) {

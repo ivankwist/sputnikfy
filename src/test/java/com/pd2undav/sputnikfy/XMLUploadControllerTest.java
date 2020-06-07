@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class SputnikfyApplicationTests {
+class XMLUploadControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -61,28 +61,6 @@ class SputnikfyApplicationTests {
 		this.mockMvc.perform(multipart("/")
 				.file(testFile))
 				.andExpect(status().is(406));
-	}
-
-	@Test
-	public void testValidXMLValidation() throws Exception {
-		XMLValidator validator = new XMLValidator();
-		MockMultipartFile testFile = new MockMultipartFile("file",
-				"file.xml",
-				"application/xml",
-				new FileInputStream(new File("resources/actividad_valid.xml")));
-
-		assertEquals(validator.validateXML(testFile).getValidation(), true);
-	}
-
-	@Test
-	public void testNotValidXMLValidation() throws Exception {
-		XMLValidator validator = new XMLValidator();
-		MockMultipartFile testFile = new MockMultipartFile("file",
-				"file.xml",
-				"application/xml",
-				new FileInputStream(new File("resources/actividad_not_valid.xml")));
-
-		assertEquals(validator.validateXML(testFile).getValidation(), false);
 	}
 
 }
