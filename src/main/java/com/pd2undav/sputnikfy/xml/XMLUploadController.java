@@ -1,5 +1,6 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.xml;
 
+import com.pd2undav.sputnikfy.activity.ActivityHandler;
 import com.pd2undav.sputnikfy.model.UploadResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ public class XMLUploadController {
     private final XMLValidator XMLValidator;
     private final ActivityHandler activityHandler;
 
-    public XMLUploadController(com.pd2undav.sputnikfy.XMLValidator XMLValidator, ActivityHandler activityHandler) {
+    public XMLUploadController(com.pd2undav.sputnikfy.xml.XMLValidator XMLValidator, ActivityHandler activityHandler) {
         this.XMLValidator = XMLValidator;
         this.activityHandler = activityHandler;
     }

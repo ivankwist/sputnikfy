@@ -1,6 +1,7 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.activity;
 
 import com.pd2undav.sputnikfy.model.ActivityMessage;
+import com.pd2undav.sputnikfy.xml.XMLParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -15,7 +16,7 @@ public class ActivityHandler {
     Logger logger = LoggerFactory.getLogger(ActivityHandler.class);
 
     private final RabbitTemplate rabbitTemplate;
-    private final XMLParser XMLParser;
+    private final com.pd2undav.sputnikfy.xml.XMLParser XMLParser;
 
     static final String SPUTNIKFY_TOPIC = "sputnikfy-topic";
 

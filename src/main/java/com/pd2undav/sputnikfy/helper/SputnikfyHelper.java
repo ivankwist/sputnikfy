@@ -1,4 +1,4 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.helper;
 
 import org.springframework.web.multipart.MultipartFile;
 

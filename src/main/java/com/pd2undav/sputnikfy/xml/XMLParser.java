@@ -1,9 +1,10 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.xml;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import com.pd2undav.sputnikfy.helper.SputnikfyHelper;
 import com.pd2undav.sputnikfy.model.Actividad;
 import com.pd2undav.sputnikfy.model.ActivityMessage;
 import com.pd2undav.sputnikfy.model.Agregado;

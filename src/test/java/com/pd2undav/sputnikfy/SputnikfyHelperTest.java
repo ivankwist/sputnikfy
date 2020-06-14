@@ -1,5 +1,6 @@
 package com.pd2undav.sputnikfy;
 
+import com.pd2undav.sputnikfy.helper.SputnikfyHelper;
 import org.apache.commons.io.FilenameUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockMultipartFile;

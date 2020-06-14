@@ -1,6 +1,8 @@
 package com.pd2undav.sputnikfy;
 
+import com.pd2undav.sputnikfy.activity.ActivityHandler;
 import com.pd2undav.sputnikfy.model.ActivityMessage;
+import com.pd2undav.sputnikfy.xml.XMLParser;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.multipart.MultipartFile;
