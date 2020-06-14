@@ -1,4 +1,7 @@
+dist: xenial
+
 language: java
+
 jdk:
   - openjdk8
 
@@ -11,3 +14,13 @@ jobs:
   include:
     - stage: Test
       script: ./mvnw clean test
+
+addons:
+  hosts:
+    - rabbitmq
+  apt:
+    packages:
+      - rabbitmq-server
+
+services:
+  - rabbitmq

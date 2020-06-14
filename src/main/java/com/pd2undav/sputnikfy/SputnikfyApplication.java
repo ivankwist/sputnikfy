@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class SputnikfyApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(SputnikfyApplication.class, args);
 	}

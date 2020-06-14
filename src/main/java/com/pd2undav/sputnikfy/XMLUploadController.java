@@ -11,9 +11,11 @@ import org.apache.commons.io.FilenameUtils;
 public class XMLUploadController {
 
     XMLValidator XMLValidator;
+    ActivityHandler activityHandler;
 
-    public XMLUploadController(XMLValidator XMLValidator) {
+    public XMLUploadController(com.pd2undav.sputnikfy.XMLValidator XMLValidator, ActivityHandler activityHandler) {
         this.XMLValidator = XMLValidator;
+        this.activityHandler = activityHandler;
     }
 
     @PostMapping("/")
@@ -22,6 +24,10 @@ public class XMLUploadController {
         String mimeType = file.getContentType();
         UploadResponse response = this.XMLValidator.validateXML(file);
 
+        if(response.getValidation()){
+            activityHandler.handleXMLActivity(file);
+        }
+
         return new ResponseEntity<UploadResponse>(response, getHttpStatus(extension, mimeType, response.getValidation()));
     }
 
@@ -29,7 +35,7 @@ public class XMLUploadController {
         HttpStatus status = HttpStatus.NOT_ACCEPTABLE;;
 
         if(extension.equals("xml") && mimeType.equals("application/xml") && validation){
-                status = HttpStatus.OK;
+            status = HttpStatus.OK;
         }
 
         return status;
