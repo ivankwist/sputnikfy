@@ -1,4 +1,4 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.model;
 
 public class Actividad {
     private String usuario;

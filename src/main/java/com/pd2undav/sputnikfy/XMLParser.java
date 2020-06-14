@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import com.pd2undav.sputnikfy.model.Actividad;
+import com.pd2undav.sputnikfy.model.ActivityMessage;
+import com.pd2undav.sputnikfy.model.Agregado;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,19 +21,13 @@ import java.util.List;
 public class XMLParser {
 
     Logger logger = LoggerFactory.getLogger(XMLParser.class);
-    XMLValidator XMLValidator;
-
-
-    public XMLParser(XMLValidator XMLValidator) {
-        this.XMLValidator = XMLValidator;
-    }
 
     public List<ActivityMessage> parseXML(MultipartFile file){
         List<ActivityMessage> msg_list = new ArrayList<>();
 
         try {
             XmlMapper xmlMapper = new XmlMapper();
-            Agregado agregado = xmlMapper.readValue(this.XMLValidator.convert(file), Agregado.class);
+            Agregado agregado = xmlMapper.readValue(SputnikfyHelper.convert(file), Agregado.class);
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 

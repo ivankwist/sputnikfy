@@ -1,5 +1,6 @@
 package com.pd2undav.sputnikfy;
 
+import com.pd2undav.sputnikfy.model.UploadResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

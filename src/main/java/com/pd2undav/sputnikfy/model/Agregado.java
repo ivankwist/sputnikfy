@@ -1,4 +1,4 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.model;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import java.util.List;

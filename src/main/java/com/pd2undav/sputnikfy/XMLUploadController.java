@@ -1,5 +1,6 @@
 package com.pd2undav.sputnikfy;
 
+import com.pd2undav.sputnikfy.model.UploadResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +11,8 @@ import org.apache.commons.io.FilenameUtils;
 @RestController
 public class XMLUploadController {
 
-    XMLValidator XMLValidator;
-    ActivityHandler activityHandler;
+    private final XMLValidator XMLValidator;
+    private final ActivityHandler activityHandler;
 
     public XMLUploadController(com.pd2undav.sputnikfy.XMLValidator XMLValidator, ActivityHandler activityHandler) {
         this.XMLValidator = XMLValidator;

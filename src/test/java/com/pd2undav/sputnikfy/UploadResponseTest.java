@@ -1,5 +1,6 @@
 package com.pd2undav.sputnikfy;
 
+import com.pd2undav.sputnikfy.model.UploadResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

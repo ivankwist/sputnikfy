@@ -1,4 +1,4 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.model;
 
 public class Ambito {
     private String ambito_tipo;

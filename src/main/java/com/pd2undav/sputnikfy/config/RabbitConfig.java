@@ -1,4 +1,4 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,6 +6,7 @@ import org.springframework.amqp.core.*;
 
 @Configuration
 public class RabbitConfig {
+
     // Exchanges
     @Bean
     public TopicExchange sputnikfyExchange() {
