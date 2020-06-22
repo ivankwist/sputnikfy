@@ -1,4 +1,4 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.xml;
 
 import com.pd2undav.sputnikfy.xml.XMLValidator;
 import org.junit.jupiter.api.Test;

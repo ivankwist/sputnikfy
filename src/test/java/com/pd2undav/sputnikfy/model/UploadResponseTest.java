@@ -1,4 +1,4 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.model;
 
 import com.pd2undav.sputnikfy.model.UploadResponse;
 import org.junit.jupiter.api.Test;

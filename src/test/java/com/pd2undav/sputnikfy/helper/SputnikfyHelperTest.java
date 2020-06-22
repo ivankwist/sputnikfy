@@ -1,4 +1,4 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.helper;
 
 import com.pd2undav.sputnikfy.helper.SputnikfyHelper;
 import org.apache.commons.io.FilenameUtils;

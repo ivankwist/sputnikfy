@@ -1,4 +1,4 @@
-package com.pd2undav.sputnikfy;
+package com.pd2undav.sputnikfy.activity;
 
 import com.pd2undav.sputnikfy.activity.ActivityHandler;
 import com.pd2undav.sputnikfy.model.ActivityMessage;
