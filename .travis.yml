@@ -17,7 +17,7 @@ jobs:
 
 addons:
   hosts:
-    - rabbitmq
+    - rabbit-cluster
   apt:
     packages:
       - rabbitmq-server
