@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.pd2undav.sputnikfy.config.RabbitConfig.SPUTNIKFY_EXCHANGE;
+
 @Service
 public class ActivityHandler {
 
-    Logger logger = LoggerFactory.getLogger(ActivityHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(ActivityHandler.class);
 
     private final RabbitTemplate rabbitTemplate;
     private final com.pd2undav.sputnikfy.xml.XMLParser XMLParser;
-
-    static final String SPUTNIKFY_TOPIC = "sputnikfy-topic";
 
     public ActivityHandler(RabbitTemplate rabbitTemplate, XMLParser XMLParser) {
         this.XMLParser = XMLParser;
@@ -26,11 +26,11 @@ public class ActivityHandler {
     }
 
     public void handleXMLActivity(MultipartFile file){
-        List<ActivityMessage> messages = this.XMLParser.parseXML(file);
+        List<ActivityMessage> activityMessages = this.XMLParser.parseXML(file);
 
-        for (ActivityMessage m:messages) {
-            rabbitTemplate.convertAndSend(SPUTNIKFY_TOPIC, m.getTopic(), m.getMessage());
-            logger.info("Sent message with routing-key '"+m.getTopic()+"': "+m.getMessage());
+        for (ActivityMessage activityMessage:activityMessages) {
+            rabbitTemplate.convertAndSend(SPUTNIKFY_EXCHANGE, activityMessage.getTopic(), activityMessage.getMessage());
+            logger.info("Sent message with routing-key '"+activityMessage.getTopic()+"': "+activityMessage.getMessage());
         }
     }
 }

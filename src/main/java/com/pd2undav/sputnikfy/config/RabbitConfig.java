@@ -8,9 +8,11 @@ import org.springframework.amqp.core.*;
 public class RabbitConfig {
 
     // Exchanges
+    public static final String SPUTNIKFY_EXCHANGE = "sputnikfy-exchange";
+
     @Bean
     public TopicExchange sputnikfyExchange() {
-        return new TopicExchange("sputnikfy-topic");
+        return new TopicExchange(SPUTNIKFY_EXCHANGE);
     }
 
     // Queues

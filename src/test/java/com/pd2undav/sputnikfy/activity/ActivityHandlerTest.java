@@ -1,6 +1,5 @@
 package com.pd2undav.sputnikfy.activity;
 
-import com.pd2undav.sputnikfy.activity.ActivityHandler;
 import com.pd2undav.sputnikfy.model.ActivityMessage;
 import com.pd2undav.sputnikfy.xml.XMLParser;
 import org.junit.jupiter.api.Test;
@@ -31,8 +30,8 @@ class ActivityHandlerTest {
 
         verify(mockParser).parseXML(eq(parameterFile));
 
-        verify(mockRabbitTemplate).convertAndSend(eq(ActivityHandler.SPUTNIKFY_TOPIC), eq("topic1"), eq("message1"));
-        verify(mockRabbitTemplate).convertAndSend(eq(ActivityHandler.SPUTNIKFY_TOPIC), eq("topic2"), eq("message2"));
+        verify(mockRabbitTemplate).convertAndSend(eq(ActivityHandler.SPUTNIKFY_EXCHANGE), eq("topic1"), eq("message1"));
+        verify(mockRabbitTemplate).convertAndSend(eq(ActivityHandler.SPUTNIKFY_EXCHANGE), eq("topic2"), eq("message2"));
 
     }
 

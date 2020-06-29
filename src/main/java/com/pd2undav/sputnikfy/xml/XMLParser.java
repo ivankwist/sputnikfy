@@ -2,6 +2,7 @@ package com.pd2undav.sputnikfy.xml;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import com.pd2undav.sputnikfy.helper.SputnikfyHelper;
@@ -21,27 +22,28 @@ import java.util.List;
 @Service
 public class XMLParser {
 
-    Logger logger = LoggerFactory.getLogger(XMLParser.class);
+    private static final Logger logger = LoggerFactory.getLogger(XMLParser.class);
 
     public List<ActivityMessage> parseXML(MultipartFile file){
-        List<ActivityMessage> msg_list = new ArrayList<>();
+        List<ActivityMessage> activityMessages = new ArrayList<>();
 
         try {
             XmlMapper xmlMapper = new XmlMapper();
             Agregado agregado = xmlMapper.readValue(SputnikfyHelper.convert(file), Agregado.class);
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            //mapper.setPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CAMEL_CASE);
 
-            for (Actividad a:agregado.getActividades()) {
-                a.setUsuario(agregado.getUsuario());
-                String json = mapper.writeValueAsString(a);
-                msg_list.add(new ActivityMessage("actividad."+a.getTipo(), json));
+            for (Actividad actividad:agregado.getActividades()) {
+                actividad.setUsuario(agregado.getUsuario());
+                String json = mapper.writeValueAsString(actividad);
+                activityMessages.add(new ActivityMessage("actividad."+actividad.getTipo(), json));
             }
 
         } catch (IOException e) {
-            logger.error("Error de parseo", e);
+            logger.error("Parsing error", e);
         }
 
-        return msg_list;
+        return activityMessages;
     }
 }
