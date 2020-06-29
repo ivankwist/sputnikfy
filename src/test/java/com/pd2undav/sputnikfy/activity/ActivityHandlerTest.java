@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
+import static com.pd2undav.sputnikfy.config.RabbitConfig.SPUTNIKFY_EXCHANGE;
 
 class ActivityHandlerTest {
 
@@ -30,8 +31,8 @@ class ActivityHandlerTest {
 
         verify(mockParser).parseXML(eq(parameterFile));
 
-        verify(mockRabbitTemplate).convertAndSend(eq(ActivityHandler.SPUTNIKFY_EXCHANGE), eq("topic1"), eq("message1"));
-        verify(mockRabbitTemplate).convertAndSend(eq(ActivityHandler.SPUTNIKFY_EXCHANGE), eq("topic2"), eq("message2"));
+        verify(mockRabbitTemplate).convertAndSend(eq(SPUTNIKFY_EXCHANGE), eq("topic1"), eq("message1"));
+        verify(mockRabbitTemplate).convertAndSend(eq(SPUTNIKFY_EXCHANGE), eq("topic2"), eq("message2"));
 
     }
 
