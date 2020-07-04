@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  sputnikfy:
+    image: sputnikfy:latest
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    depends_on:
+      - rabbit-cluster
+  
+  statistics-listener:
+    image: statistics-listener:latest
+    restart: on-failure
+    depends_on:
+      - rabbit-cluster
+      - statistics-db
+
+  statistics-db:
+    image: statistics-db:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'statistics'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'statistics-listener'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'pass'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+
+  rabbit-cluster:
+    image: rabbitmq:3.8-management
+    hostname: rabbit-cluster
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15672:15672"
+      - "25672:25672"
