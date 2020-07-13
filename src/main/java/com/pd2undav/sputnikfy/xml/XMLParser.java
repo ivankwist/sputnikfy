@@ -2,7 +2,6 @@ package com.pd2undav.sputnikfy.xml;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import com.pd2undav.sputnikfy.helper.SputnikfyHelper;
@@ -22,7 +21,7 @@ import java.util.List;
 @Service
 public class XMLParser {
 
-    private static final Logger logger = LoggerFactory.getLogger(XMLParser.class);
+    private static final Logger log = LoggerFactory.getLogger(XMLParser.class);
 
     public List<ActivityMessage> parseXML(MultipartFile file){
         List<ActivityMessage> activityMessages = new ArrayList<>();
@@ -32,7 +31,6 @@ public class XMLParser {
             Agregado agregado = xmlMapper.readValue(SputnikfyHelper.convert(file), Agregado.class);
             ObjectMapper mapper = new ObjectMapper();
             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-            //mapper.setPropertyNamingStrategy(PropertyNamingStrategy.LOWER_CAMEL_CASE);
 
             for (Actividad actividad:agregado.getActividades()) {
                 actividad.setUsuario(agregado.getUsuario());
@@ -41,7 +39,7 @@ public class XMLParser {
             }
 
         } catch (IOException e) {
-            logger.error("Parsing error", e);
+            log.error("Parsing error", e);
         }
 
         return activityMessages;

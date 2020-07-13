@@ -2,6 +2,9 @@ package com.pd2undav.sputnikfy.xml;
 
 import com.pd2undav.sputnikfy.activity.ActivityHandler;
 import com.pd2undav.sputnikfy.model.UploadResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +14,8 @@ import org.apache.commons.io.FilenameUtils;
 
 @RestController
 public class XMLUploadController {
+
+    private static final Logger log = LoggerFactory.getLogger(XMLUploadController.class);
 
     private final XMLValidator XMLValidator;
     private final ActivityHandler activityHandler;
@@ -28,6 +33,7 @@ public class XMLUploadController {
 
         if(response.getValidation()){
             activityHandler.handleXMLActivity(file);
+            log.info("Valid XML file. Sent to ActivityHandler.");
         }
 
         return new ResponseEntity<UploadResponse>(response, getHttpStatus(extension, mimeType, response.getValidation()));

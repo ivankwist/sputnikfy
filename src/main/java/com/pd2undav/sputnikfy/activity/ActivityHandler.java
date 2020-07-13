@@ -18,7 +18,7 @@ import static com.pd2undav.sputnikfy.config.RabbitConfig.SPUTNIKFY_EXCHANGE;
 @Service
 public class ActivityHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(ActivityHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(ActivityHandler.class);
 
     private final RabbitTemplate rabbitTemplate;
     private final com.pd2undav.sputnikfy.xml.XMLParser XMLParser;
@@ -39,7 +39,7 @@ public class ActivityHandler {
                     .build();
 
             rabbitTemplate.convertAndSend(SPUTNIKFY_EXCHANGE, activityMessage.getTopic(), message);
-            logger.info("Sent message with routing-key '"+activityMessage.getTopic()+"': "+activityMessage.getMessage());
+            log.info("Sent message with routing-key '"+activityMessage.getTopic()+"': "+activityMessage.getMessage());
         }
     }
 }

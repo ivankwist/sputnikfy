@@ -19,7 +19,7 @@ import java.io.IOException;
 @Service
 public class XMLValidator {
 
-    private static final Logger logger = LoggerFactory.getLogger(XMLValidator.class);
+    private static final Logger log = LoggerFactory.getLogger(XMLValidator.class);
 
     public UploadResponse validateXML(MultipartFile file){
         try {
@@ -28,7 +28,7 @@ public class XMLValidator {
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(SputnikfyHelper.convert(file)));
         } catch (IOException | org.xml.sax.SAXException e) {
-            logger.error("Validation error", e);
+            log.error("Validation error", e);
             return new UploadResponse(false, e.getMessage());
         }
 
