@@ -3,6 +3,9 @@ package com.pd2undav.sputnikfy.activity;
 import com.pd2undav.sputnikfy.model.ActivityMessage;
 import com.pd2undav.sputnikfy.xml.XMLParser;
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageBuilder;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,9 +34,11 @@ class ActivityHandlerTest {
 
         verify(mockParser).parseXML(eq(parameterFile));
 
-        verify(mockRabbitTemplate).convertAndSend(eq(SPUTNIKFY_EXCHANGE), eq("topic1"), eq("message1"));
-        verify(mockRabbitTemplate).convertAndSend(eq(SPUTNIKFY_EXCHANGE), eq("topic2"), eq("message2"));
+        Message message1 = MessageBuilder.withBody("message1".getBytes()).setContentType(MessageProperties.CONTENT_TYPE_JSON).build();
+        Message message2 = MessageBuilder.withBody("message2".getBytes()).setContentType(MessageProperties.CONTENT_TYPE_JSON).build();
 
+        verify(mockRabbitTemplate).convertAndSend(eq(SPUTNIKFY_EXCHANGE), eq("topic1"), eq(message1));
+        verify(mockRabbitTemplate).convertAndSend(eq(SPUTNIKFY_EXCHANGE), eq("topic2"), eq(message2));
     }
 
 }
