@@ -8,10 +8,10 @@ jdk:
 script: ./mvnw clean install
 
 env:
-  - RABBIT_URL = rabbit
-  - RABBIT_PORT = 5672
-  - RABBIT_USER = guest
-  - RABBIT_PASS = guest
+  - RABBIT_URL=rabbit
+  - RABBIT_PORT=5672
+  - RABBIT_USER=guest
+  - RABBIT_PASS=guest
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
