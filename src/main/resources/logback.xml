@@ -6,7 +6,7 @@
         <syslogHost>logs5.papertrailapp.com</syslogHost>
         <port>12193</port>
         <facility>USER</facility>
-        <suffixPattern>users-service %highlight([%.-1level]) %35.35logger{35}:\t%m\t%cyan%ex{5}</suffixPattern>
+        <suffixPattern>sputnikfy %highlight([%.-1level]) %35.35logger{35}:\t%m\t%cyan%ex{5}</suffixPattern>
         <throwableExcluded>true</throwableExcluded>
     </appender>
 
